@@ -69,8 +69,8 @@ func WithSeenConcurrency(concurrency int64) Option {
 	}
 }
 
-func WithExtraSyncerOpts(os ...syncer.Option) Option {
+func WithCustomSyncerOpts(mapper func(...syncer.Option) []syncer.Option) Option {
 	return func(s *StatefulSyncer) {
-		s.extraSyncerOpts = os
+		s.mapSyncerOpts = mapper
 	}
 }
